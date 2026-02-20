@@ -5,7 +5,9 @@ set -euo pipefail
 # Intentionally verbose and defensive to reduce operational mistakes.
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BACKUP_DIR="${ROOT_DIR}/.backups"
+# BACKUP_DIR is consumed by other scripts that source this file.
+# shellcheck disable=SC2034
+export BACKUP_DIR="${ROOT_DIR}/.backups"
 
 log()  { echo "[INFO] $*"; }
 warn() { echo "[WARN] $*" >&2; }
