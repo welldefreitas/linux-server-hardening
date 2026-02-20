@@ -1,0 +1,12 @@
+[sshd]
+enabled = true
+port = ssh
+backend = systemd
+
+# Sane defaults
+findtime = 10m
+maxretry = 5
+bantime = 1h
+
+# Email actions disabled by default (enable if you have mail configured)
+action = %(action_)s
