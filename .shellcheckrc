@@ -1,0 +1,3 @@
+# Keep ShellCheck strict; allow common patterns explicitly if needed.
+# Example:
+# disable=SC1091
