@@ -11,7 +11,7 @@ if [[ ! -d "${BACKUP_DIR}" ]]; then
   exit 1
 fi
 
-latest="$(ls -1 "${BACKUP_DIR}" | tail -n 1 || true)"
+latest="$(find "${BACKUP_DIR}" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null | sort | tail -n 1)"
 if [[ -z "${latest}" ]]; then
   err "No backups available."
   exit 1
