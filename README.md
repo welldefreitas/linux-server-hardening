@@ -157,22 +157,6 @@ linux-server-hardening/
 ├── README.md                          # Main documentation (quickstart + profiles + design)
 └── security.md                        # Threat model + mitigations + operational risks
 ```
-## ⚙️ Configuration (Env Vars)
-
-You can override defaults via environment variables:
-- `PROFILE`: Loads `profiles/<PROFILE>.env`.
-- `DRY_RUN`: Set to `1` to print intended actions.
-- `SSH_PORT`: Default `22`.
-- `ALLOW_PASSWORD_AUTH`: Default `false` (Key-based only).
-- `ALLOW_HTTP` / `ALLOW_HTTPS`: Default `false`.
-- `AUTO_REBOOT`: Default `false` (Toggle for unattended upgrades).
-
-**Example manual override:**
-```bash
-sudo SSH_PORT=2222 ALLOW_HTTP=true AUTO_REBOOT=false make apply
-```
-
-
 ---
 
 ## ⚙️ Configuration Reference (Env Vars)
