@@ -1,0 +1,7 @@
+// Enable automatic upgrades (Ubuntu/Debian style).
+// This is a strong signal for cloud hardening and operational maturity.
+
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+APT::Periodic::Download-Upgradeable-Packages "1";
+APT::Periodic::AutocleanInterval "7";
