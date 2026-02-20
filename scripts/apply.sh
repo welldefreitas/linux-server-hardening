@@ -155,7 +155,7 @@ fi
 # Cloud-init can override SSH password auth depending on image settings.
 # We do not modify cloud-init by default; we warn if it may re-enable password auth on reboot.
 if [[ -f /etc/cloud/cloud.cfg ]]; then
-  if grep -Eq '^\s*ssh_pwauth:\s*true' /etc/cloud/cloud.cfg; then
+  if grep -Eq '^[[:space:]]*ssh_pwauth:[[:space:]]*true' /etc/cloud/cloud.cfg; then
     warn "cloud-init: ssh_pwauth is TRUE. It may re-enable password auth after reboot. Consider setting ssh_pwauth: false in your image baseline."
   fi
 fi
@@ -229,7 +229,11 @@ if has_cmd aa-status; then
   if [[ "${DRY_RUN}" -eq 1 ]]; then
     log "DRY_RUN: would verify AppArmor status"
   else
-    aa-status >/dev/null 2>&1 && log "AppArmor: enabled" || warn "AppArmor: not enabled"
+      if aa-status >/dev/null 2>&1; then
+        log "AppArmor: enabled"
+      else
+        warn "AppArmor: not enabled"
+      fi
   fi
 fi
 
