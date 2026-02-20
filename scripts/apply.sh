@@ -47,8 +47,8 @@ ALLOW_HTTPS="${ALLOW_HTTPS:-false}"
 AUTO_REBOOT="${AUTO_REBOOT:-false}"
 
 # Profile-driven SSH posture (web server vs bastion)
-SSH_ALLOW_TCP_FORWARDING="${SSH_ALLOW_TCP_FORWARDING:-no}"      # yes|no
-SSH_ALLOW_AGENT_FORWARDING="${SSH_ALLOW_AGENT_FORWARDING:-no}"  # yes|no
+SSH_ALLOW_TCP_FORWARDING="${SSH_ALLOW_TCP_FORWARDING:-no}"     # yes|no
+SSH_ALLOW_AGENT_FORWARDING="${SSH_ALLOW_AGENT_FORWARDING:-no}" # yes|no
 
 # ---- Normalize booleans to sshd-friendly yes/no values ----
 # PasswordAuthentication expects yes|no (NOT true|false).
@@ -104,7 +104,7 @@ else
   tmp_apt="$(mktemp)"
   if [[ "${AUTO_REBOOT}" == "true" ]]; then
     sed -e 's/Unattended-Upgrade::Automatic-Reboot "false";/Unattended-Upgrade::Automatic-Reboot "true";/g' \
-      "${APT_50}" > "${tmp_apt}"
+      "${APT_50}" >"${tmp_apt}"
   else
     cp -a "${APT_50}" "${tmp_apt}"
   fi
@@ -135,7 +135,7 @@ else
     -e "s/__PASSWORD_AUTH__/${PASSWORD_AUTH_YN}/g" \
     -e "s/__ALLOW_TCP_FORWARDING__/${SSH_ALLOW_TCP_FORWARDING}/g" \
     -e "s/__ALLOW_AGENT_FORWARDING__/${SSH_ALLOW_AGENT_FORWARDING}/g" \
-    "${SSH_TEMPLATE}" > "${tmp_ssh}"
+    "${SSH_TEMPLATE}" >"${tmp_ssh}"
 
   write_file_if_changed "${tmp_ssh}" "${SSH_DST_FILE}"
   rm -f "${tmp_ssh}"
@@ -229,11 +229,11 @@ if has_cmd aa-status; then
   if [[ "${DRY_RUN}" -eq 1 ]]; then
     log "DRY_RUN: would verify AppArmor status"
   else
-      if aa-status >/dev/null 2>&1; then
-        log "AppArmor: enabled"
-      else
-        warn "AppArmor: not enabled"
-      fi
+    if aa-status >/dev/null 2>&1; then
+      log "AppArmor: enabled"
+    else
+      warn "AppArmor: not enabled"
+    fi
   fi
 fi
 
