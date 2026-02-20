@@ -34,7 +34,7 @@ This repository is designed to prove **real** Linux hardening ability in a way r
 - **5️⃣ Accountability (auditd):** Watches identity files, sudoers, SSH configs, and auth logs.
 - **6️⃣ Brute Force Defense (fail2ban):** SSH jail enabled with sensible defaults.
 
-- ---
+---
 
 ## 🛑 Safety model (IMPORTANT)
 
