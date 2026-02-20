@@ -1,0 +1,35 @@
+name: ci
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y shellcheck
+          # shfmt via Go (fast + stable)
+          sudo apt-get install -y golang-go
+          go install mvdan.cc/sh/v3/cmd/shfmt@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
+
+      - name: ShellCheck
+        run: shellcheck scripts/*.sh
+
+      - name: shfmt (check)
+        run: shfmt -d -i 2 -ci scripts/*.sh
+
+      - name: Basic repo sanity checks
+        run: |
+          test -f README.md
+          test -f security.md
+          test -f Makefile
+          test -d hardening
