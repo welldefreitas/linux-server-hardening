@@ -3,7 +3,7 @@
 # 🔐 Linux Server Hardening Baseline
 ### Enterprise-grade OS hardening for Ubuntu 22.04 / 24.04 Cloud deployments.
 
-[![CI Pipeline](https://img.shields.io/github/actions/workflow/status/welldefreitas/linux-server-hardening/ci.yml?style=for-the-badge)](https://github.com/welldefreitas/linux-server-hardening/actions)![ShellCheck](https://img.shields.io/badge/ShellCheck-enabled-success?style=for-the-badge)
+[![CI Pipeline](https://img.shields.io/github/actions/workflow/status/welldefreitas/linux-server-hardening/ci.yml?style=for-the-badge)](https://github.com/welldefreitas/linux-server-hardening/actions)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04%20%7C%2024.04-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 
