@@ -9,9 +9,9 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # shellcheck disable=SC2034
 export BACKUP_DIR="${ROOT_DIR}/.backups"
 
-log()  { echo "[INFO] $*"; }
+log() { echo "[INFO] $*"; }
 warn() { echo "[WARN] $*" >&2; }
-err()  { echo "[ERROR] $*" >&2; }
+err() { echo "[ERROR] $*" >&2; }
 
 require_root() {
   if [[ "${EUID}" -ne 0 ]]; then
