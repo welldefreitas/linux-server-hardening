@@ -9,6 +9,13 @@ if ! is_debian_like; then
   exit 0
 fi
 
+# Identify distro (Ubuntu cloud target)
+if [[ -f /etc/os-release ]]; then
+  # shellcheck disable=SC1091
+  source /etc/os-release
+  log "Detected OS: ${NAME:-unknown} ${VERSION_ID:-unknown}"
+fi
+
 log "Updating apt cache..."
 apt-get update -y
 
@@ -19,6 +26,10 @@ apt-get install -y \
   fail2ban \
   auditd \
   audispd-plugins \
+  unattended-upgrades \
+  apt-listchanges \
+  apparmor \
+  apparmor-utils \
   curl \
   ca-certificates
 
